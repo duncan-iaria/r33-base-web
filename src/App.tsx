@@ -1,21 +1,27 @@
 import React, { FC, ReactNode, useMemo } from 'react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+
+import { WalletDisplay } from './components/WalletDisplay';
+import { UnityDisplay } from './components/UnityDisplay';
+import { UnityContextProvider } from './hooks/useUnityContext';
 
 export const App: FC = () => {
   return (
     <WalletContextProvider>
-      <Content />
+      <UnityContextProvider>
+        <Content />
+      </UnityContextProvider>
     </WalletContextProvider>
   );
 };
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-  const network = WalletAdapterNetwork.Devnet;
+  const network = WalletAdapterNetwork.Mainnet;
 
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
@@ -36,9 +42,9 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 const Content: FC = () => {
   return (
-    <>
-      <WalletMultiButton />
-      <button>Guest Mode</button>
-    </>
+    <main style={{ display: 'flex', flex: 1 }}>
+      <UnityDisplay />
+      <WalletDisplay />
+    </main>
   );
 };

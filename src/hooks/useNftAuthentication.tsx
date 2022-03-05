@@ -33,5 +33,6 @@ export const useNftAuthentication = () => {
   return {
     isLoading,
     isAuthenticated,
+    walletPublicKey: publicKey,
   };
 };

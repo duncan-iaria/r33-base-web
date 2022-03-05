@@ -4,7 +4,7 @@ import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 import { useNftAuthentication } from '../hooks/useNftAuthentication';
 
 export const UnityDisplay = () => {
-  const { isAuthenticated } = useNftAuthentication();
+  const { isAuthenticated, walletPublicKey } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
   const onVictory = (walletAddress: string, score: number) => {
     console.info('you won!', walletAddress, score);
@@ -18,6 +18,10 @@ export const UnityDisplay = () => {
     unityContext.send(GAME_NAME, 'OnWalletSet', walletAddress);
   };
 
+  const setUnityAuthenticationStatus = (isAuthenticated: boolean) => {
+    unityContext.send(GAME_NAME, 'OnAuthenticationSet', isAuthenticated);
+  };
+
   useEffect(() => {
     unityContext.on('Victory', onVictory);
     unityContext.on('debug', onLogMessage);
@@ -25,7 +29,9 @@ export const UnityDisplay = () => {
 
   useEffect(() => {
     console.log('is authenticated...', isAuthenticated);
-    isAuthenticated && setUnityWallet('test');
+
+    walletPublicKey && setUnityWallet(walletPublicKey.toString());
+    setUnityAuthenticationStatus(isAuthenticated);
   }, [isAuthenticated]);
 
   return (

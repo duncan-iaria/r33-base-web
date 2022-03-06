@@ -18,8 +18,8 @@ export const UnityDisplay = () => {
     unityContext.send(GAME_NAME, 'OnWalletSet', walletAddress);
   };
 
-  const setUnityAuthenticationStatus = (isAuthenticated: boolean) => {
-    unityContext.send(GAME_NAME, 'OnAuthenticationSet', isAuthenticated);
+  const setUnityAuthenticationStatus = (isAuthenticatedBit: number) => {
+    unityContext.send(GAME_NAME, 'OnAuthenticationSet', isAuthenticatedBit);
   };
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const UnityDisplay = () => {
     console.log('is authenticated...', isAuthenticated);
 
     walletPublicKey && setUnityWallet(walletPublicKey.toString());
-    setUnityAuthenticationStatus(isAuthenticated);
+    setUnityAuthenticationStatus(isAuthenticated ? 1 : 0);
   }, [isAuthenticated]);
 
   return (

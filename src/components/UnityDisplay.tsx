@@ -1,14 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useCallback } from 'react';
 import Unity from 'react-unity-webgl';
 import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 import { useNftAuthentication } from '../hooks/useNftAuthentication';
+import { requestTokenPayout } from '../api';
 
 export const UnityDisplay = () => {
-  const { isAuthenticated, walletPublicKey } = useNftAuthentication();
+  const { isAuthenticated, walletPublicKey, getFirstAuthenticatedNft } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
-  const onVictory = (walletAddress: string, score: number) => {
-    console.info('you won!', walletAddress, score);
-  };
+
+  console.log('walletPubKey', walletPublicKey);
+
+  const onVictory = useCallback(
+    async (walletAddress: string, score: number) => {
+      const winningNft = getFirstAuthenticatedNft();
+      console.info('you won!', walletAddress, score, winningNft?.mint);
+      const payoutResponse = await requestTokenPayout(
+        walletPublicKey!.toBase58(),
+        winningNft?.mint
+      );
+      console.info('payoutRes:', payoutResponse);
+    },
+    [walletPublicKey, isAuthenticated]
+  );
 
   const onLogMessage = (message: string) => {
     console.log(message);
@@ -25,7 +38,11 @@ export const UnityDisplay = () => {
   useEffect(() => {
     unityContext.on('Victory', onVictory);
     unityContext.on('debug', onLogMessage);
-  }, []);
+    () => {
+      unityContext.removeEventListener('Victory');
+      unityContext.removeEventListener('debug');
+    };
+  }, [walletPublicKey, isAuthenticated]);
 
   useEffect(() => {
     console.log('is authenticated...', isAuthenticated);

@@ -1,13 +1,10 @@
 import { useMemo } from 'react';
-import { useWalletNfts } from '@nfteyez/sol-rayz-react';
+import { useWalletNfts, NftTokenAccount } from '@nfteyez/sol-rayz-react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
-const FORBOT_SYMBOL = 'FORGEBOTS';
-const UPDATE_AUTH = 'GPi8gWDoUbTHC153diiFfcuYLg8UNnMSxzbsmYJpr2RZ';
-const FIRST_CREATOR = 'GyFfdLMsKhyYFGv14KYafbpCiZLBZwSuaJGqeyqZts5s';
-
-// Just incase we need this
-const TOKEN_PROGRAM_ID = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
+const FORGEBOT_SYMBOL = process.env.FORGEBOT_SYMBOL;
+const UPDATE_AUTH = process.env.UPDATE_AUTH;
+const FIRST_CREATOR = process.env.FIRST_CREATOR;
 
 export const useNftAuthentication = () => {
   const { publicKey } = useWallet();
@@ -18,20 +15,23 @@ export const useNftAuthentication = () => {
     connection,
   });
 
-  const isAuthenticated = useMemo(
-    () =>
-      nfts.some(
-        (nft) =>
-          nft.data.symbol === FORBOT_SYMBOL &&
-          nft.updateAuthority === UPDATE_AUTH &&
-          nft.data?.creators[0]?.address === FIRST_CREATOR
-      ),
-    [nfts]
-  );
+  const isNftAuthenticated = (nft: NftTokenAccount): boolean =>
+    nft.data.symbol === FORGEBOT_SYMBOL &&
+    nft.updateAuthority === UPDATE_AUTH &&
+    nft.data?.creators[0]?.address === FIRST_CREATOR;
+
+  const isAuthenticated = useMemo(() => nfts.some(isNftAuthenticated), [nfts]);
+
+  const getFirstAuthenticatedNft = () => {
+    const nft = nfts.find(isNftAuthenticated);
+    console.log('first found nft', nft);
+    return nft;
+  };
 
   return {
     isLoading,
     isAuthenticated,
     walletPublicKey: publicKey,
+    getFirstAuthenticatedNft,
   };
 };

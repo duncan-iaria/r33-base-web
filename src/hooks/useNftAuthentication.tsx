@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useWalletNfts } from '@nfteyez/sol-rayz-react';
-import { Connection, PublicKey } from '@solana/web3.js';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
 const FORBOT_SYMBOL = 'FORGEBOTS';

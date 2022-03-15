@@ -8,8 +8,6 @@ export const UnityDisplay = () => {
   const { isAuthenticated, walletPublicKey, getFirstAuthenticatedNft } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
 
-  console.log('walletPubKey', walletPublicKey);
-
   const onVictory = useCallback(
     async (walletAddress: string, score: number) => {
       const winningNft = getFirstAuthenticatedNft();
@@ -36,10 +34,10 @@ export const UnityDisplay = () => {
   };
 
   useEffect(() => {
-    unityContext.on('Victory', onVictory);
+    unityContext.on('victory', onVictory);
     unityContext.on('debug', onLogMessage);
     () => {
-      unityContext.removeEventListener('Victory');
+      unityContext.removeEventListener('victory');
       unityContext.removeEventListener('debug');
     };
   }, [walletPublicKey, isAuthenticated]);

@@ -7,6 +7,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 
 import { WalletDisplay } from './components/WalletDisplay';
 import { UnityDisplay } from './components/UnityDisplay';
+import { DebugHelper } from './components/DebugHelper';
 import { UnityContextProvider } from './hooks/useUnityContext';
 
 export const App: FC = () => {
@@ -43,7 +44,8 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 const Content: FC = () => {
   return (
     <main style={{ display: 'flex', flex: 1 }}>
-      <UnityDisplay />
+      <DebugHelper />
+      {/* <UnityDisplay /> */}
       <WalletDisplay />
     </main>
   );

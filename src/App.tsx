@@ -53,8 +53,8 @@ const Content: FC = () => {
   return (
     <main style={{ display: 'flex', flex: 1 }}>
       {/* <DebugHelper /> */}
-      {/* <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} /> */}
-      {!isGameInProgress && isGameLoaded && <GameOverlayUi />}
+      <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} />
+      {!isGameInProgress && isGameLoaded && <GameOverlayUi setGameInProgress={setGameInProgress} />}
       {/* <Logo /> */}
       {/* <InfoPanel /> */}
       {isGameLoaded && <WalletDisplay />}

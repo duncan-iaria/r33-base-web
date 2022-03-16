@@ -6,7 +6,11 @@ import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 
 const width = 400;
 
-export const InfoPanel = () => {
+interface Props {
+  setGameInProgress: (isInProgress: boolean) => void;
+}
+
+export const InfoPanel = ({ setGameInProgress }: Props) => {
   const { isLoading, isAuthenticated, walletPublicKey } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
 
@@ -14,6 +18,7 @@ export const InfoPanel = () => {
 
   const onPressPlay = () => {
     unityContext.send(GAME_NAME, 'OnGameStart');
+    setGameInProgress(true);
   };
 
   return (

@@ -57,6 +57,8 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "parcel": "^2.3.1",
+    "postcss": "^8.4.11",
+    "postcss-modules": "^4.3.1",
     "prettier": "^2.5.1",
     "shx": "^0.3.4",
     "tslib": "^2.3.1",

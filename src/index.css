@@ -11,12 +11,62 @@ body {
   display: flex;
 } */
 
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem;
+  font-weight: bolder;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
+  font-size: 2rem;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+}
+
+button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background-color: rgb(49, 67, 76);
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: rgb(41, 58, 67);
+}
+button:active {
+  transform: translateY(1px);
+}
+
+/* FB Specific (TODO move to a styling solution? */
 .forge-bot-wallet-button {
   background-color: rgb(167, 0, 0) !important;
+  border-radius: 12px !important;
 }
 
 .forge-bot-wallet-button:hover {
   background-color: rgb(106, 6, 6) !important;
+}
+
+.fb-info-panel {
+  display: 'flex';
+  height: 70vh;
+  background-color: rgb(98, 118, 128);
+  margin-right: 24px;
+  margin-top: 100px;
+  border-radius: 12px;
+  padding: 36px 36px 12px 36px;
+  overflow: auto;
+  max-height: 600px;
 }
 
 /* .wallet-adapter-button-trigger {

@@ -21,7 +21,7 @@ export const DebugHelper = () => {
   );
 
   return (
-    <div>
+    <div style={{ position: 'absolute', top: 12, left: 12 }}>
       <button onClick={() => onVictory(walletPublicKey!.toBase58(), 1)}>test</button>
     </div>
   );

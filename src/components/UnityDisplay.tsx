@@ -4,7 +4,12 @@ import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 import { useNftAuthentication } from '../hooks/useNftAuthentication';
 import { requestTokenPayout } from '../api';
 
-export const UnityDisplay = () => {
+interface Props {
+  setGameLoaded: (isGameLoaded: boolean) => void;
+  setGameInProgress: (isGameLoaded: boolean) => void;
+}
+
+export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
   const { isAuthenticated, walletPublicKey, getFirstAuthenticatedNft } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
 
@@ -33,12 +38,20 @@ export const UnityDisplay = () => {
     unityContext.send(GAME_NAME, 'OnAuthenticationSet', isAuthenticatedBit);
   };
 
+  const onGameStart = () => {
+    setGameInProgress(true);
+  };
+
   useEffect(() => {
     unityContext.on('victory', onVictory);
     unityContext.on('debug', onLogMessage);
+    unityContext.on('gameStart', onGameStart);
+    unityContext.on('loaded', () => {
+      setGameLoaded(true);
+    });
+
     () => {
-      unityContext.removeEventListener('victory');
-      unityContext.removeEventListener('debug');
+      unityContext.removeAllEventListeners();
     };
   }, [walletPublicKey, isAuthenticated]);
 

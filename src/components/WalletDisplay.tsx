@@ -14,11 +14,12 @@ export const WalletDisplay = () => {
   return (
     <div
       style={{
+        position: 'absolute',
+        right: 0,
         zIndex: 100,
         display: 'flex',
         flex: 1,
-        // backgroundColor: 'red',
-        padding: 12,
+        padding: 24,
         justifyContent: 'flex-end',
       }}
     >

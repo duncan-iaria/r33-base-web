@@ -1,13 +1,19 @@
-import React, { FC, ReactNode, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo, useState } from 'react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 
-import { WalletDisplay } from './components/WalletDisplay';
-import { UnityDisplay } from './components/UnityDisplay';
-import { DebugHelper } from './components/DebugHelper';
+import {
+  WalletDisplay,
+  GameOverlayUi,
+  UnityDisplay,
+  DebugHelper,
+  Logo,
+  InfoPanel,
+} from './components';
+
 import { UnityContextProvider } from './hooks/useUnityContext';
 
 export const App: FC = () => {
@@ -34,7 +40,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets}>
+      <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
@@ -42,11 +48,16 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const Content: FC = () => {
+  const [isGameInProgress, setGameInProgress] = useState<boolean>(false);
+  const [isGameLoaded, setGameLoaded] = useState<boolean>(true);
   return (
     <main style={{ display: 'flex', flex: 1 }}>
-      <DebugHelper />
-      {/* <UnityDisplay /> */}
-      <WalletDisplay />
+      {/* <DebugHelper /> */}
+      {/* <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} /> */}
+      {!isGameInProgress && isGameLoaded && <GameOverlayUi />}
+      {/* <Logo /> */}
+      {/* <InfoPanel /> */}
+      {isGameLoaded && <WalletDisplay />}
     </main>
   );
 };

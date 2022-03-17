@@ -17,7 +17,10 @@ interface Props {
 export const TryAgain = ({ message, onClick }: any) => {
   return (
     <div>
-      {message} <button onClick={onClick}>Try Again?</button>
+      {message}{' '}
+      <button className="fb-retry-button" onClick={onClick}>
+        Try Again?
+      </button>
     </div>
   );
 };
@@ -29,7 +32,10 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
   const onVictory = useCallback(
     async (walletAddress: string, score: number) => {
       const winningNft = getFirstAuthenticatedNft();
-      const payoutResponse = await requestTokenPayout(walletPublicKey!.toBase58(), winningNft?.mint);
+      const payoutResponse = await requestTokenPayout(
+        walletPublicKey!.toBase58(),
+        winningNft?.mint
+      );
       const payout =
         payoutResponse?.body?.data?.amountPaidOut &&
         payoutResponse?.body?.data?.amountPaidOut / 100;
@@ -40,7 +46,7 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
           break;
         case 500:
           toast.error(
-            !payoutResponse.body.isRetryAllowed ? (
+            payoutResponse.body.isRetryAllowed ? (
               <TryAgain
                 message={payoutResponse.body.message}
                 onClick={() => onVictory(walletAddress, 1)}
@@ -72,6 +78,7 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
   };
 
   const onGameStart = () => {
+    setUnityAuthenticationStatus(isAuthenticated ? 1 : 0);
     setGameInProgress(true);
   };
 

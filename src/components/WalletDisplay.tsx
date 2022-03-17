@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
-
 export const WalletDisplay = () => {
   return (
     <div
       style={{
         position: 'absolute',
-        right: 40,
+        left: 0,
+        right: 0,
         zIndex: 100,
         display: 'flex',
         flex: 1,
         padding: 24,
         justifyContent: 'flex-end',
+        // background: 'red',
       }}
     >
       <WalletMultiButton

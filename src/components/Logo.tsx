@@ -9,7 +9,7 @@ export const Logo = () => {
       {/* <FbLogoSvg/>
       <svg xmlns={fbLogoSvg}>
       </svg> */}
-      <img src={fbLogo} height={164} />
+      <img src={fbLogo} height={164} style={{ marginRight: -10 }} />
       <div>
         <h1>ForgeBots</h1>
         <h2>GEM COLLECTOR</h2>

@@ -23,13 +23,13 @@ export const InfoPanel = ({ setGameInProgress }: Props) => {
 
   return (
     <div style={{ zIndex: 10 }}>
-      {isDisplayingInfo && (
+      {isDisplayingInfo ? (
         <div className="fb-info-panel" style={{ width: width }}>
           {isAuthenticated ? <img src={companionPortrait} /> : <img src={blockyPortrait} />}
           <div style={{ marginTop: 12 }}>
             {isAuthenticated ? (
               <p>
-                You have connected a wallet that holds a Forge-Bot. You have unlocked the full
+                You have connected a wallet that holds a ForgeBot. You have unlocked the full
                 experience and will earn the maximium $EGEM reward!
               </p>
             ) : (
@@ -48,6 +48,9 @@ export const InfoPanel = ({ setGameInProgress }: Props) => {
             </div>
           )}
         </div>
+      ) : (
+        // TODO fix this hack to keep the layout the same!
+        <div className="fb-info-blank" style={{ width }}></div>
       )}
       {isDisplayingInfo && (
         <button onClick={onPressPlay} style={{ width, marginTop: 24 }}>

@@ -14,7 +14,8 @@ body {
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 4rem;
-  font-weight: bolder;
+  font-weight: 800;
+  letter-spacing: -0.15rem;
 }
 
 h2 {
@@ -47,6 +48,20 @@ button:active {
   transform: translateY(1px);
 }
 
+.fb-retry-button {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0rem;
+  background-color: transparent;
+  text-decoration: underline;
+  color: rgb(62, 82, 93);
+}
+
+.fb-retry-button:hover {
+  background-color: transparent;
+  color: rgb(41, 58, 67);
+}
+
 /* FB Specific (TODO move to a styling solution? */
 .forge-bot-wallet-button {
   background-color: rgb(167, 0, 0) !important;
@@ -67,6 +82,11 @@ button:active {
   padding: 36px 36px 12px 36px;
   overflow: auto;
   max-height: 600px;
+}
+
+.fb-info-blank {
+  margin-right: 64px;
+  margin-top: 100px;
 }
 
 .fb-loader-container {

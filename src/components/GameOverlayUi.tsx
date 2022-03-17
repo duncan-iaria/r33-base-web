@@ -11,10 +11,10 @@ export const GameOverlayUi = ({ setGameInProgress }: Props) => (
     style={{
       display: 'flex',
       flex: 1,
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
     }}
   >
-    <Logo/>
+    <Logo />
     <InfoPanel setGameInProgress={setGameInProgress}></InfoPanel>
   </div>
 );

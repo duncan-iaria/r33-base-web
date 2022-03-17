@@ -69,6 +69,16 @@ button:active {
   max-height: 600px;
 }
 
+.fb-loader-container {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
 /* .wallet-adapter-button-trigger {
   background-color: rgb(167, 0, 0) !important;
 } */

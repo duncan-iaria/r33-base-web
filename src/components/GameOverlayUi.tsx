@@ -2,7 +2,11 @@ import React from 'react';
 
 import { InfoPanel } from './InfoPanel';
 import { Logo } from './Logo';
-export const GameOverlayUi = () => (
+interface Props {
+  setGameInProgress: (isInProgress: boolean) => void;
+}
+
+export const GameOverlayUi = ({ setGameInProgress }: Props) => (
   <div
     style={{
       display: 'flex',
@@ -11,6 +15,6 @@ export const GameOverlayUi = () => (
     }}
   >
     <Logo></Logo>
-    <InfoPanel></InfoPanel>
+    <InfoPanel setGameInProgress={setGameInProgress}></InfoPanel>
   </div>
 );

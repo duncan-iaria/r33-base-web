@@ -6,7 +6,11 @@ import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 
 const width = 400;
 
-export const InfoPanel = () => {
+interface Props {
+  setGameInProgress: (isInProgress: boolean) => void;
+}
+
+export const InfoPanel = ({ setGameInProgress }: Props) => {
   const { isLoading, isAuthenticated, walletPublicKey } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
 
@@ -14,6 +18,7 @@ export const InfoPanel = () => {
 
   const onPressPlay = () => {
     unityContext.send(GAME_NAME, 'OnGameStart');
+    setGameInProgress(true);
   };
 
   return (
@@ -24,14 +29,14 @@ export const InfoPanel = () => {
           <div style={{ marginTop: 12 }}>
             {isAuthenticated ? (
               <p>
-                You have connected a wallet that holds a Forge- Bot. You have unlocked the full
+                You have connected a wallet that holds a Forge-Bot. You have unlocked the full
                 experience and will earn the maximium $EGEM reward!
               </p>
             ) : (
               <p>
                 You don’t have a ForgeBot in this wallet so you will be using a Portals avatar. For
-                the full expe- rience and to maximize your $EGEM reward connect with a wallet
-                holding a ForgeBot.
+                the full experience and to maximize your $EGEM reward connect with a wallet holding
+                a ForgeBot.
               </p>
             )}
           </div>

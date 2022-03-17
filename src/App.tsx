@@ -4,6 +4,8 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 import {
   WalletDisplay,
@@ -12,6 +14,7 @@ import {
   DebugHelper,
   Logo,
   InfoPanel,
+  Loader,
 } from './components';
 
 import { UnityContextProvider } from './hooks/useUnityContext';
@@ -49,15 +52,14 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 const Content: FC = () => {
   const [isGameInProgress, setGameInProgress] = useState<boolean>(false);
-  const [isGameLoaded, setGameLoaded] = useState<boolean>(true);
+  const [isGameLoaded, setGameLoaded] = useState<boolean>(false);
   return (
     <main style={{ display: 'flex', flex: 1 }}>
       {/* <DebugHelper /> */}
-      {/* <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} /> */}
-      {!isGameInProgress && isGameLoaded && <GameOverlayUi />}
-      {/* <Logo /> */}
-      {/* <InfoPanel /> */}
-      {isGameLoaded && <WalletDisplay />}
+      <ToastContainer />
+      <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} />
+      {!isGameInProgress && isGameLoaded && <GameOverlayUi setGameInProgress={setGameInProgress} />}
+      {isGameLoaded ? <WalletDisplay /> : <Loader />}
     </main>
   );
 };

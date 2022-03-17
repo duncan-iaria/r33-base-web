@@ -4,6 +4,7 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import { Oval } from 'react-loader-spinner';
 
 import {
   WalletDisplay,
@@ -12,6 +13,7 @@ import {
   DebugHelper,
   Logo,
   InfoPanel,
+  Loader,
 } from './components';
 
 import { UnityContextProvider } from './hooks/useUnityContext';
@@ -49,15 +51,13 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 const Content: FC = () => {
   const [isGameInProgress, setGameInProgress] = useState<boolean>(false);
-  const [isGameLoaded, setGameLoaded] = useState<boolean>(true);
+  const [isGameLoaded, setGameLoaded] = useState<boolean>(false);
   return (
     <main style={{ display: 'flex', flex: 1 }}>
       {/* <DebugHelper /> */}
       <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} />
       {!isGameInProgress && isGameLoaded && <GameOverlayUi setGameInProgress={setGameInProgress} />}
-      {/* <Logo /> */}
-      {/* <InfoPanel /> */}
-      {isGameLoaded && <WalletDisplay />}
+      {isGameLoaded ? <WalletDisplay /> : <Loader />}
     </main>
   );
 };

@@ -27,7 +27,8 @@
     "fmt": "prettier --write '{*,**/*}.{js,ts,jsx,tsx,json}'",
     "lint": "eslint . && prettier --check '{*,**/*}.{js,ts,jsx,tsx,json}'",
     "lint:fix": "eslint --fix . && yarn fmt",
-    "nuke": "shx rm -rf node_modules yarn.lock"
+    "nuke": "shx rm -rf node_modules yarn.lock",
+    "deploy-qa": "yarn clean && npm run copy-assets && parcel build src/index.html && scp -r dist/* snoodleking@leaningpines.io:/var/www/r33.leaningpines.io/html/."
   },
   "dependencies": {
     "@nfteyez/sol-rayz-react": "^0.10.2",
@@ -39,6 +40,7 @@
     "http-proxy-middleware": "^2.0.3",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-loader-spinner": "^6.0.0-0",
     "react-unity-webgl": "^8.7.4"
   },
   "devDependencies": {

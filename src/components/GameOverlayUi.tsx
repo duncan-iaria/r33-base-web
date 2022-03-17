@@ -14,7 +14,7 @@ export const GameOverlayUi = ({ setGameInProgress }: Props) => (
       justifyContent: 'space-between',
     }}
   >
-    <Logo></Logo>
+    <Logo/>
     <InfoPanel setGameInProgress={setGameInProgress}></InfoPanel>
   </div>
 );

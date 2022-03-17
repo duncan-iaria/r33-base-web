@@ -61,7 +61,7 @@ button:active {
   display: 'flex';
   height: 70vh;
   background-color: rgb(98, 118, 128);
-  margin-right: 24px;
+  margin-right: 64px;
   margin-top: 100px;
   border-radius: 12px;
   padding: 36px 36px 12px 36px;

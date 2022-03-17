@@ -70,12 +70,13 @@ button:active {
 }
 
 .fb-loader-container {
-  z-index: 100;
+  z-index: 1;
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 }
 
 /* .wallet-adapter-button-trigger {

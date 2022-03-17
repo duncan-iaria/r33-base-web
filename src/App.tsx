@@ -4,7 +4,8 @@ import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
-import { Oval } from 'react-loader-spinner';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 import {
   WalletDisplay,
@@ -55,6 +56,7 @@ const Content: FC = () => {
   return (
     <main style={{ display: 'flex', flex: 1 }}>
       {/* <DebugHelper /> */}
+      <ToastContainer />
       <UnityDisplay setGameLoaded={setGameLoaded} setGameInProgress={setGameInProgress} />
       {!isGameInProgress && isGameLoaded && <GameOverlayUi setGameInProgress={setGameInProgress} />}
       {isGameLoaded ? <WalletDisplay /> : <Loader />}

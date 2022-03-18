@@ -29,6 +29,7 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
   const { isAuthenticated, walletPublicKey, getFirstAuthenticatedNft } = useNftAuthentication();
   const unityContext = useContext(UnityContextData);
 
+  // TODO clean this up!
   const onVictory = useCallback(
     async (walletAddress: string, score: number) => {
       const winningNft = getFirstAuthenticatedNft();

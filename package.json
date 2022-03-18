@@ -1,6 +1,6 @@
 {
   "name": "r33-base-web",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "snoodleking <snoodleking@gmail.com>",
   "repository": "https://github.com/duncan-iaria/r33-base-web",
   "license": "Apache-2.0",
@@ -29,8 +29,7 @@
     "fmt": "prettier --write '{*,**/*}.{js,ts,jsx,tsx,json}'",
     "lint": "eslint . && prettier --check '{*,**/*}.{js,ts,jsx,tsx,json}'",
     "lint:fix": "eslint --fix . && yarn fmt",
-    "nuke": "shx rm -rf node_modules yarn.lock",
-    "deploy-qa": "yarn clean && npm run copy-assets && parcel build src/index.html && scp -r dist/* snoodleking@leaningpines.io:/var/www/r33.leaningpines.io/html/."
+    "nuke": "shx rm -rf node_modules yarn.lock"
   },
   "dependencies": {
     "@nfteyez/sol-rayz-react": "^0.10.2",

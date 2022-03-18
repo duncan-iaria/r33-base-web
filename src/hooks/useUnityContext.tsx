@@ -1,5 +1,5 @@
-import React, { useEffect, createContext, FC } from 'react';
-import Unity, { UnityContext } from 'react-unity-webgl';
+import React, { createContext, FC } from 'react';
+import { UnityContext } from 'react-unity-webgl';
 
 export const GAME_NAME = 'ForgeBots Riptide';
 

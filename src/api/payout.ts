@@ -12,7 +12,7 @@ export async function requestTokenPayout(walletAddress: string, nftAddress?: str
     });
 
     if (response.status !== 200) {
-      // TODO error handling
+      // TODO move error handling here
     }
     return response.json();
   } catch (error) {

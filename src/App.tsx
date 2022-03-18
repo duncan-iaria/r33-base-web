@@ -7,15 +7,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import {
-  WalletDisplay,
-  GameOverlayUi,
-  UnityDisplay,
-  DebugHelper,
-  Logo,
-  InfoPanel,
-  Loader,
-} from './components';
+import { WalletDisplay, GameOverlayUi, UnityDisplay, DebugHelper, Loader } from './components';
 
 import { UnityContextProvider } from './hooks/useUnityContext';
 

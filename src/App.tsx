@@ -45,6 +45,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 const Content: FC = () => {
   const [isGameInProgress, setGameInProgress] = useState<boolean>(false);
   const [isGameLoaded, setGameLoaded] = useState<boolean>(false);
+
   return (
     <main style={{ display: 'flex', flex: 1 }}>
       {/* <DebugHelper /> */}

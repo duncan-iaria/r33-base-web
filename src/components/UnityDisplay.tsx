@@ -87,7 +87,11 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
     unityContext.on('victory', onVictory);
     unityContext.on('debug', onLogMessage);
     unityContext.on('gameStart', onGameStart);
-    unityContext.on('loaded', () => {
+    // unityContext.on('loaded', () => {
+    // this is built in for when UNITY loads
+    //   setGameLoaded(true);
+    // });
+    unityContext.on('titleLoaded', () => {
       setGameLoaded(true);
     });
 

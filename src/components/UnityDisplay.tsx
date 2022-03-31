@@ -102,8 +102,8 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
 
   useEffect(() => {
     console.log('is authenticated...', isAuthenticated);
-    createOrGetTokenAccount(walletPublicKey!.toBase58());
 
+    walletPublicKey && createOrGetTokenAccount(walletPublicKey!.toBase58());
     walletPublicKey && setUnityWallet(walletPublicKey.toString());
     setUnityAuthenticationStatus(isAuthenticated ? 1 : 0);
   }, [isAuthenticated, walletPublicKey]);

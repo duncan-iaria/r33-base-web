@@ -3,7 +3,7 @@ import Unity from 'react-unity-webgl';
 import { toast } from 'react-toastify';
 import { UnityContextData, GAME_NAME } from '../hooks/useUnityContext';
 import { useNftAuthentication } from '../hooks/useNftAuthentication';
-import { requestTokenPayout } from '../api';
+import { requestTokenPayout, createOrGetTokenAccount } from '../api';
 
 const toastOptions = {
   position: toast.POSITION.TOP_CENTER,
@@ -102,10 +102,11 @@ export const UnityDisplay = ({ setGameLoaded, setGameInProgress }: Props) => {
 
   useEffect(() => {
     console.log('is authenticated...', isAuthenticated);
+    createOrGetTokenAccount(walletPublicKey!.toBase58());
 
     walletPublicKey && setUnityWallet(walletPublicKey.toString());
     setUnityAuthenticationStatus(isAuthenticated ? 1 : 0);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, walletPublicKey]);
 
   return (
     <>
